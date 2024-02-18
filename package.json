@@ -18,6 +18,7 @@
     "@vercel/speed-insights": "^0.0.5",
     "autoprefixer": "^10.4.16",
     "dotenv": "^16.3.1",
+    "framer-motion": "^11.0.5",
     "geist": "1.1.0",
     "next": "14.0.5-canary.23",
     "next-auth": "5.0.0-beta.3",

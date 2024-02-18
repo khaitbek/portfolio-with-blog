@@ -1,117 +1,100 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
+import Link from "next/link"
 
-export const metadata: Metadata = {
-  title: 'Work',
-  description: 'A summary of my work and contributions.',
-};
+export default function Page() {
+	return (
+		<section>
+			<h1 className="font-medium text-2xl mb-8 tracking-tighter">my work</h1>
+			<div className="prose prose-neutral dark:prose-invert">
+				<p>
+					On my way to make people's life easier with love, here's a summary of
+					my work so far.
+				</p>
+				<hr className="my-6 border-neutral-100 dark:border-neutral-800" />
+				<h2 className="font-medium text-xl mb-1 tracking-tighter">Realsoft</h2>
+				<p className="text-neutral-600 dark:text-neutral-400 text-sm">
+					Fullstack developer
+				</p>
+				<p>
+					I joined <a href="https://realsoft.uz">Realsoft</a> on September 2023
+					as a fullstack developer. I have been working with the{" "}
+					<strong>React.js</strong> and <strong>Vue.js</strong> teams to ship
+					beatiful, robust and accessible user interfaces
+				</p>
+				<ul>
+					<li>
+						In September, I started my internship by helping the{" "}
+						<Link href="https://expert.uz">expert.uz</Link> team to build the{" "}
+						<Link href="https://expert.uz/pages/community_catalog">
+							<strong>community</strong>
+						</Link>{" "}
+						module almost from scratch. I used tools like{" "}
+						<strong>PostgreSQL</strong> and <strong>Vue.js</strong>. We{" "}
+					</li>
+					<li>
+						In November, I was promoted to Junior fullstack developer at
+						Realsoft and started working on the project called{" "}
+						<Link href="https://kh.smart-agro.uz/">Smart Agro</Link>. My goal
+						was to build an interactive map. I used the{" "}
+						<Link href="https://leafletjs.com/">
+							<strong>Leaflet.js</strong>
+						</Link>
+						library to build an awesome, accessible, very unique interactive map
+					</li>
+					<li>
+						Starting January 2024, I joined the{" "}
+						<Link href="https://realpay.uz/">
+							<strong>Realpay </strong>
+						</Link>
+						team to help them build user interfaces for their payment system. I
+						am collaborating with <strong>Java</strong> and{" "}
+						<strong>React.js</strong> developers team
+					</li>
+				</ul>
+				<hr />
+				<h2 className="font-medium text-xl mb-1 tracking-tighter">
+					Freelancing
+				</h2>
 
-async function Stars() {
-  let res = await fetch('https://api.github.com/repos/vercel/next.js');
-  let json = await res.json();
-  let count = Math.round(json.stargazers_count / 1000);
-  return `${count}k stars`;
-}
-
-export default function WorkPage() {
-  return (
-    <section>
-      <h1 className="font-medium text-2xl mb-8 tracking-tighter">my work</h1>
-      <div className="prose prose-neutral dark:prose-invert">
-        <p>
-          On a mission to build products developers{' '}
-          <Link href="/blog/developer-experience-examples">love</Link>, and
-          along the way, teach the next generation of developers. Here's a
-          summary of my work so far.
-        </p>
-        <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
-        <h2 className="font-medium text-xl mb-1 tracking-tighter">Vercel</h2>
-        <p className="text-neutral-600 dark:text-neutral-400 text-sm">
-          VP of Product
-        </p>
-        <p>
-          I joined <a href="https://vercel.com/home">Vercel</a> early to grow{' '}
-          <a href="https://nextjs.org">Next.js</a> and our developer community.
-          I built our Developer Relations team to teach our community about our
-          products.
-        </p>
-        <ul>
-          <li>
-            In 2021, I was promoted to Director of DevRel. We{' '}
-            <a href="https://twitter.com/kelseyhightower/status/1105985400110112768">
-              translated customer pain
-            </a>{' '}
-            back into the product roadmap. We spoke at{' '}
-            <Link href="/blog/nextjs-conf-2022-recap">conferences</Link>, wrote
-            blog posts, and created videos. We built open-source examples and
-            contributed back to the product.
-          </li>
-          <li>
-            In 2022, I was promoted to VP of Developer Experience, now also
-            leading our product documentation team. My team created a{' '}
-            <a href="https://nextjs.org/learn">new free course</a> to teach
-            Next.js, which had 17 million page views that year.{' '}
-            <a href="https://twitter.com/leeerob/status/1608900031859527682">
-              I shipped.
-            </a>{' '}
-            I partnered with our open-source community, collaborating with
-            frameworks like{' '}
-            <a href="https://vercel.com/docs/frameworks/nuxt">Nuxt</a> and{' '}
-            <a href="https://astro.build/blog/vercel-official-hosting-partner/">
-              Astro
-            </a>{' '}
-            and sponsoring individuals and projects.
-          </li>
-          <li>
-            In 2023, I was promoted to VP of Product, now also leading Product
-            Management.
-          </li>
-        </ul>
-        <p>
-          Since I joined Vercel in 2020, Next.js active developers have grown
-          1000%, now at ~900k. Next.js is now a top 10 software project on
-          GitHub with <Stars />. It's used by Walmart, ChatGPT, Starbucks, Okta,
-          Datastax, Notion, and <a href="https://nextjs.org/showcase">more</a>.
-        </p>
-        <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
-        <h2 className="font-medium text-xl mb-1 tracking-tighter">Hy-Vee</h2>
-        <p className="text-neutral-600 dark:text-neutral-400 text-sm">
-          Senior Software Engineer, 2018 — 2020
-        </p>
-        <p>
-          Hy-Vee, an almost 100-year-old grocery chain in the United States,
-          wanted to build a new version of their digital storefront. I joined a
-          team of <Link href="/blog/product-engineers">product engineers</Link>{' '}
-          working across web and mobile to rebuild their legacy .NET application
-          (~500k MAU) with React and React Native.
-        </p>
-        <p>
-          On the frontend, I led our move from a custom webpack and React
-          configuration to Next.js and the latest React patterns. In the
-          process, I shared my learnings online, helping educate members of the
-          React and Next.js community by creating courses.
-        </p>
-        <p>
-          Throughout my two years, I was able to work on some hard problems:
-          decoupling a decade old monolith into microservices, working with a
-          federated GraphQL API, learning and occasionally managing a Kubernetes
-          cluster, building and implementing a design system, incrementally
-          migrating individual components and routes to a new framework and
-          infrastructure, and more.
-        </p>
-        <hr className="my-6 border-neutral-100 dark:border-neutral-800" />
-        <h2 className="font-medium text-xl mb-1 tracking-tighter">Workiva</h2>
-        <p className="text-neutral-600 dark:text-neutral-400 text-sm">
-          Software Engineer, 2015 — 2018
-        </p>
-        <p>
-          Workiva ($WK) is a cloud platform for data reporting and compliance.
-          During my time at Workiva, I gained my first production experience
-          using React. I worked on tooling to help predict and alert and
-          regressions in our SaaS platform, building a product similar to
-          open-source tools like Sentry.
-        </p>
-      </div>
-    </section>
-  );
+				<p>
+					Besides working at <a href="https://realsoft.uz">Realsoft</a>, I
+					actively spend my time <strong>freelancing</strong>. I have managed to
+					finish a few projects using technologies like
+					<strong>React.js</strong> and <strong>Next.js</strong> for clients
+					from <strong>Uzbekistan</strong>
+				</p>
+				<ul>
+					<li>
+						<h3>
+							<Link href="https://isnur.uz">Isnur.uz</Link>
+						</h3>
+						<p>
+							I helped the{" "}
+							<strong>
+								<Link href="https://isnur.uz">Isnur.uz</Link>
+							</strong>{" "}
+							company to showcase their products by building an e-commerce
+							website. I helped the frontend dev of the company by building a
+							backend using <strong>Express.js</strong> and integrating with it
+							using <strong>HTML</strong>, <strong>CSS</strong> and{" "}
+							<strong>Javascript</strong>
+						</p>
+					</li>
+					<li>
+						<h3>
+							<Link href="https://www.elitegroup.uz">ELITE GROUP</Link>
+						</h3>
+						<p>
+							I helped the{" "}
+							<strong>
+								<Link href="https://www.elitegroup.uz">ELITE GROUP</Link>
+							</strong>{" "}
+							company to showcase their products by building an e-commerce
+							website. I built an e-commerce website using{" "}
+							<strong>Next.js</strong> and <strong>Sanity.io</strong>
+						</p>
+					</li>
+				</ul>
+			</div>
+		</section>
+	)
 }
