@@ -1,8 +1,8 @@
 // components
-import { BlogLink } from "app/shared/ui/BlogLink/BlogLink";
+import { BlogLink } from "src/shared/ui/BlogLink/BlogLink";
 
 // api
-import { getBlogPosts } from "../shared/api/queries";
+import { getBlogPosts } from "src/shared/api/queries";
 
 // metadata
 export const metadata = {

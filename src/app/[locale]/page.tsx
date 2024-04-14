@@ -1,11 +1,13 @@
+import { useTranslations } from "next-intl";
+
 // utils
-import { PreloadResources } from "./preload";
+import { PreloadResources } from "../preload";
 
 // components
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowIcon } from "./shared/ui/ArrowIcon/ArrowIcon";
-import { BlogLink } from "./shared/ui/BlogLink/BlogLink";
+import { ArrowIcon } from "../../shared/ui/ArrowIcon/ArrowIcon";
+import { BlogLink } from "../../shared/ui/BlogLink/BlogLink";
 
 // assets
 import devfest from "public/images/me_at_dev_fest.jpg";
@@ -20,12 +22,14 @@ import vsCode from "public/images/vscode.svg";
 import nextjs from "public/next-logo.svg";
 
 export default function Page() {
+  const t = useTranslations("Index");
   return (
     <section>
       <PreloadResources />
       <h1 className="font-medium text-2xl mb-8 tracking-tighter">
         hey, I'm Hayitbek 👋
       </h1>
+      <p className="prose prose-neutral dark:prose-invert">{t("title")}</p>
       <p className="prose prose-neutral dark:prose-invert">
         {`I'm a fullstack developer, optimist, and community builder. I currently `}
         <Link href="/work">work</Link>

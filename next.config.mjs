@@ -1,12 +1,9 @@
-import postgres from "postgres";
+import createNextIntlPlugin from "next-intl/plugin";
 
-export const sql = postgres(process.env.POSTGRES_URL, {
-  ssl: "allow",
-});
+const withNextIntl = createNextIntlPlugin("./src/shared/config/i18n/i18n.ts");
 
 const nextConfig = {
   experimental: {
-    // ppr: true,
     useLightningcss: true,
   },
   headers() {
@@ -61,4 +58,4 @@ const securityHeaders = [
   },
 ];
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

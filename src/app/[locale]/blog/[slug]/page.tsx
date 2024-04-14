@@ -4,10 +4,10 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
 // components
-import { CustomMDX } from "app/components/mdx";
+import { CustomMDX } from "src/components/mdx";
 
 // api
-import { getBlogPosts } from "app/shared/api/queries";
+import { getBlogPosts } from "src/shared/api/queries";
 
 export async function generateMetadata({
   params,

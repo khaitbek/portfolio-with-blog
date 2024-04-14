@@ -3,15 +3,15 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 
 // types
 import type { Metadata } from "next";
-import { SandpackCSS } from "./blog/[slug]/sandpack";
+import { SandpackCSS } from "../../shared/ui/SandPackCss/SandPackCSS";
 
 // components
-import { Navbar } from "./components/nav";
+import { Navbar } from "../../components/nav";
 
 // assets
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
-import "./global.css";
+import "../../styles/globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.BASE_URL!),

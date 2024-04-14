@@ -1,4 +1,4 @@
-import { getBlogPosts } from "app/shared/api/queries";
+import { getBlogPosts } from "src/shared/api/queries";
 
 export default async function sitemap() {
   let blogs = getBlogPosts().map((post) => ({
