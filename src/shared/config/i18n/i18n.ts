@@ -7,9 +7,6 @@ export const locales = ["en", "uz"] as const;
 export default getRequestConfig(async ({ locale }) => {
   // Validate that the incoming `locale` parameter is valid
   if (!locales.includes(locale as any)) notFound();
-  console.log({ locale, filename: `../../../../messages/${locale}.json` });
-  const file = await import(`../../../../messages/${locale}.json`);
-  console.log({ file: file.default });
   return {
     messages: (
       await (locale === "en"

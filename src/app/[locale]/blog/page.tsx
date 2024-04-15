@@ -11,8 +11,8 @@ export const metadata = {
     "Read my thoughts on software development, project management and more.",
 };
 
-export default function BlogPage() {
-  let allBlogs = getBlogPosts();
+export default function BlogPage({ params }: { params: { locale: string } }) {
+  const allBlogs = getBlogPosts(params.locale as any);
 
   return (
     <section>

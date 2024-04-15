@@ -1,0 +1,85 @@
+---
+title: Modern CSS
+description: CSS has been evolving for a long time, and it has become a powerful tool for web development. This article will explore some of the modern CSS features that will blow your mind.
+categories: CSS
+publishedAt: "2023-03-08"
+summary: "Modern CSS features that will blow your mind"
+---
+
+[](https://medium.com/@khaitbekdev?source=post_page-----595516a13236--------------------------------)
+
+[Hayitbek Yusupov](https://medium.com/@khaitbekdev?source=post_page-----595516a13236--------------------------------)
+
+2 min read
+
+Mar 8, 2023
+
+CSS is argueably the most popular and widely used styling language in the world. It is used by millions of websites and applications, and it is also used in many other languages, such as HTML, JavaScript, and even in some programming languages like Python and Ruby. But despite its widespread use, CSS still has some challenges that can make it difficult to use effectively. But luckily, with the new features and improvements in CSS, it has become much easier to use and understand.
+
+# **Inset**
+
+```
+.absolute{
+  position:absolute;
+  top:0;
+  right:0;
+  bottom:0;
+  left:0;
+}
+```
+
+When we use `position:absolute` we often need to specify the position of the element. We can do this by setting the `top`, `right`, `bottom`, and `left` properties. However, sometimes we may want to set the position of an element relative to its parent element. In this case, we can use the `inset` property to set the position of the element relative to its parent element.
+
+```
+.absolute{
+  position:absolute;
+  inset:0; /* top, right, bottom, left -> 0 */
+}
+```
+
+# **Aspect Ratio**
+
+```
+.rounded{
+  width:100px;
+  height:100px;
+  border-radius:50%;
+}
+```
+
+Whenever we want our elements to have the same width and height, we often specify the `width` and `height` properties separately. However, we can just use the `aspect-ratio` property to set the width and height of an element to be the same.
+
+```
+.rounded {
+  width:100px;
+  aspect-ratio:1; /* width and height are both 100px */
+  border-radius:50%;
+}
+```
+
+# **min(), max(), clamp()**
+
+One of the most common patterns in CSS is having a `.container` element that can be used to center and scale content. This can be done by setting the `width` and `max-width` properties to the desired values, and then using the `margin` and `padding` properties to center the content within the container
+
+```
+.container{
+  width:100%;
+  max-width:1240px;
+  margin:0 auto;
+  padding: 0 20px;
+}
+```
+
+There is nothing wrong with this code, but it can be improved by using the `min()` and `max()` functions to set the `width` and `max-width` properties to the desired values:
+
+```
+.container{
+  width:min(100%, 1240px); /* gets the min width based on the viewport width */
+  margin-inline:auto; /* shorter way of defining margin-left va margin-right */
+  padding-inline:20px; /* shorter way of defining padding-left va padding-right */
+}
+```
+
+`min()`, `max()`, `padding-inline` and `margin-inline` are all **logical properties** in CSS.
+
+If you wanna try out these features yourself, you can check out this [_CodePen example_](https://codepen.io/khaitbek/pen/XWPNQxB)

@@ -12,7 +12,9 @@ import { getBlogPosts } from "src/shared/api/queries";
 export async function generateMetadata({
   params,
 }): Promise<Metadata | undefined> {
-  let post = getBlogPosts().find((post) => post.slug === params.slug);
+  let post = getBlogPosts(params.locale).find(
+    (post) => post.slug === params.slug
+  );
   if (!post) {
     return;
   }
@@ -85,7 +87,9 @@ function formatDate(date: string) {
 }
 
 export default function Blog({ params }) {
-  let post = getBlogPosts().find((post) => post.slug === params.slug);
+  let post = getBlogPosts(params.locale).find(
+    (post) => post.slug === params.slug
+  );
 
   if (!post) {
     notFound();

@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { Locale } from "../config/i18n/types";
 
 type Metadata = {
   title: string;
@@ -55,6 +56,6 @@ function getMDXData(dir: string) {
   });
 }
 
-export function getBlogPosts() {
-  return getMDXData(path.join(process.cwd(), "content"));
+export function getBlogPosts(locale: Locale = "en") {
+  return getMDXData(path.join(process.cwd(), "content", locale));
 }

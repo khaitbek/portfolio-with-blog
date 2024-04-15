@@ -1,57 +1,47 @@
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fleerob%2Fleerob.io)
+<!-- project overview -->
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/10407700/226433583-ee0ef9e3-ae8a-4d9c-bd0a-d0d1a0b3e0c3.png" width="100%" />
+</div>
 
-# leerob.io
+<!-- project description -->
+<div align="center">
+  <h1>Hayitbek Yusupov</h1>
+  <p>Developer, writer, and creator.</p>
+</div>
 
-- **Framework**: [Next.js](https://nextjs.org/)
-- **Database**: [Postgres](https://vercel.com/postgres)
-- **Authentication**: [NextAuth.js](https://next-auth.js.org)
-- **Deployment**: [Vercel](https://vercel.com)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com)
-- **Analytics**: [Vercel Analytics](https://vercel.com/analytics)
+<!-- project badges -->
+<div align="center">
+  <a href="https://twitter.com/HayitbekD">
+    <img src="https://img.shields.io/twitter/follow/HayitbekD?style=social" alt="Twitter" />
+  </a>
+</div>
 
-## Running Locally
+<!-- project links -->
+<div align="center">
+  <a href="https://khaitbek.vercel.app">
+    <img src="https://user-images.githubusercontent.com/10407700/226433591-ae0ef9e3-ae8a-4d9c-bd0a-d0d1a0b3e0c3.png" alt="Hayitbek Yusupov" />
+  </a>
+</div>
 
-This application requires Node.js v18.17+.
+## About
 
-```bash
-git clone https://github.com/leerob/leerob.io.git
-cd leerob.io
-bun install
-bun run setup # Remove all of my personal information
-bun dev
-```
+I'm a fullstack developer, optimist, and community builder.
 
-Create a `.env.local` file similar to [`.env.example`](https://github.com/leerob/leerob.io/blob/main/.env.example).
+I'm currently working on a personal website, [khaitbek.vercel.app](https://khaitbek.vercel.app), where I share my knowledge and experiences.
 
-## Database Schema
+## Contact
 
-```sql
-CREATE TABLE redirects (
-  id SERIAL PRIMARY KEY,
-  source VARCHAR(255) NOT NULL,
-  destination VARCHAR(255) NOT NULL,
-  permanent BOOLEAN NOT NULL
-);
-
-CREATE TABLE guestbook (
-  id SERIAL PRIMARY KEY,
-  email VARCHAR(255) NOT NULL,
-  body TEXT NOT NULL,
-  created_by VARCHAR(255) NOT NULL,
-  created_at TIMESTAMP NOT NULL,
-  updated_at TIMESTAMP
-);
-
-CREATE TABLE views (
-  slug VARCHAR(255) PRIMARY KEY,
-  count INT NOT NULL
-);
-```
+Feel free to reach out to me at [hayitbekdeveloper@gmail.com](mailto:hayitbekdeveloper@gmail.com).
 
 ## License
 
-1. You are free to use this code as inspiration.
-2. Please do not copy it directly.
-3. Crediting the author is appreciated.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Please remove all of my personal information (blog posts, images, etc.) by running `bun run setup`.
+## Tasks
+
+- [x] Add support for localization.
+- [ ] Use next-intl's Link component instead of next/link.
+- [x] Multi-language content.
+- [ ] Add support for dark mode.
+- [ ] Add support for search.
+- [ ] Add support for social media sharing.

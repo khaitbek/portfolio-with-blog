@@ -29,7 +29,6 @@ export default function Page() {
       <h1 className="font-medium text-2xl mb-8 tracking-tighter">
         hey, I'm Hayitbek 👋
       </h1>
-      <p className="prose prose-neutral dark:prose-invert">{t("title")}</p>
       <p className="prose prose-neutral dark:prose-invert">
         {`I'm a fullstack developer, optimist, and community builder. I currently `}
         <Link href="/work">work</Link>
