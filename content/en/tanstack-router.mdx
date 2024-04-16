@@ -1,16 +1,33 @@
 ---
 title: Tanstack Router
-description: React ilovalarimizda type-safe routing ishlatishni vanihoyat iloji bor
+description: We finally can have a type-safe routing solution for React. Learn how to use Tanstack Router.
 categories: React,Typescript
 publishedAt: "2023-06-23"
 summary: "Stop using React Router DOM. Use Tanstack Router instead!"
 ---
 
-**Typescript** hozirgi kunda jadal rivojlanib bormoqda va dasturchilar uchun bir qancha qulayliklar berib kelmoqda. **Typescript** yordamida biz **qat’iy tiplarga asoslangan tizimda** kod yozish orqali o’z ilovalarimizni tezroq, samaraliroq yaratishga erishdik. Typescript **React** bilan juda ajoyib ishlaydi va men ancha muddatdan beri **React** ilovalarimni Typescriptsiz tasavvur qila olmas edim. Lekin React ilovalarimning shunday bir qismi borki, u qismi hech qachon **Typescript** ni qo’llab-quvvatlamagan, har doim kemtik bo’lib qolavergan. U ham bo’lsa, **routing** qismi. Biz hech qachon **Typescript** ilovamizdagi routelarni **boshqarish, nazorat qilish** imkoniga ega bo’lmaganmiz, balkim bu hech kimning hayoliga ham kelmagan. Ammo, [**Tanstack Router**](https://tanstack.com/router/v1) mana shu kemtik joyni to’ldirish uchun eng katta qadamlardan biri bo’ldi.
+**Typescript** has become a go-to solution for web development. It helps us write more reliable and efficient code. However, there were some places where we did not have the option to use **Typescript**. For example, let's say you want to create a **React** app. One of the first things you care about is **routing**. For **routing**, we almost had only one option: **React Router DOM**. However, **React Router DOM** is not type-safe. It is a great choice for **React** apps, but it is not the best choice for **Typescript** apps. You can use **React Router DOM** for a lot of your **React** apps, but if you're someone who loves type-safety like me, you might want to try **Tanstack Router**.
+
+**Tanstack Router** is a type-safe routing solution for **React**. It provides a lot of benefits, such as:
+
+- **100% inferred TypeScript support**
+- **Typesafe navigation**
+- **Nested Routing and layout routes**
+- **Built-in Route Loaders w/ SWR Caching**
+- **Designed for client-side data caches** (TanStack Query, SWR, etc.)
+- **Automatic route prefetching**
+- **Asynchronous route elements and error boundaries**
+- **File-based Route Generation**
+- **Typesafe JSON-first Search Params state management APIs**
+- **Path and Search Parameter Schema Validation**
+- **Search Param Navigation APIs**
+- **Custom Search Param parser/serializer support**
+- **Search param middleware**
+- **Route matching/loading middleware**
 
 ![](https://miro.medium.com/v2/resize:fit:875/0*NwEly64rEq5KkqBX)
 
-[**Tanstack Router**](https://tanstack.com/router/v1) orqali endi biz ilovamizdagi **route** larni **Typescript** yordamida yozish imkoniga egamiz. Agar hech narsa tushunmagan bo’lsangiz pastdagi rasmga yaxshilab qarang:
+[**Tanstack Router**](https://tanstack.com/router/v1) gives us to have a type-safe routing solution for **React**. Just imagine, you have a `Link` component and you are passing down an `href` prop to it. When we used React Router DOM, we had to type the `href` prop as a string. But with **Tanstack Router**, you can get **autocomplete** for all the possible routes in your app. This is a huge time saver and makes your code more readable. If you didn't fully understand what I just said, take a look at the image below:
 
 ![](https://ik.imagekit.io/khaitbek/blog/ts-router-intro/image.png?updatedAt=1702958474379)
 
@@ -122,8 +139,8 @@ export function Navbar() {
 Ko’rib turganingizdek, biz ilovamizdagi barcha route larni Typescript orqali yozishga erishdik. Bu hali ozginagina kirish edi. Tanstack Router juda ko’p ishlarni bajaradi:
 
 <ul>
-	<li> Devtools ✅</li>
-	<li> Type safe search params ✅</li>
+  <li> Devtools ✅</li>
+  <li> Type safe search params ✅</li>
 </ul>
 
 ## Xayr, React Router DOM?
