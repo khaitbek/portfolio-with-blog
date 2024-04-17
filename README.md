@@ -40,7 +40,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Tasks
 
 - [x] Add support for localization.
-- [ ] Use next-intl's Link component instead of next/link.
+- [x] Use next-intl's Link component instead of next/link.
 - [x] Multi-language content.
 - [ ] Add support for dark mode.
 - [ ] Add support for search.

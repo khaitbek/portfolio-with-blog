@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "../../config/i18n/navigation";
 
 // assets
 import { ArrowIcon } from "../ArrowIcon/ArrowIcon";

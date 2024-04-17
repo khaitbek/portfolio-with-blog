@@ -5,7 +5,7 @@ import { PreloadResources } from "../preload";
 
 // components
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "../../shared/config/i18n/navigation";
 import { ArrowIcon } from "../../shared/ui/ArrowIcon/ArrowIcon";
 import { BlogLink } from "../../shared/ui/BlogLink/BlogLink";
 
