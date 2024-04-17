@@ -1,5 +1,8 @@
 import { Metadata } from "next";
 
+// assets
+import "./global.css";
+
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.BASE_URL!),
   title: {

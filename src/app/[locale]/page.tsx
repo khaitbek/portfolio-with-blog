@@ -9,6 +9,9 @@ import { Link } from "../../shared/config/i18n/navigation";
 import { ArrowIcon } from "../../shared/ui/ArrowIcon/ArrowIcon";
 import { BlogLink } from "../../shared/ui/BlogLink/BlogLink";
 
+// types
+import { ComponentPropsWithoutRef } from "react";
+
 // assets
 import devfest from "public/images/me_at_dev_fest.jpg";
 import hackathon from "public/images/me_at_najot_talim_hackathon.jpg";
@@ -137,7 +140,7 @@ export default function Page() {
       </div>
       <div className="my-8 flex flex-row space-x-2 w-full h-14 overflow-x-auto">
         <div className="border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded flex items-center justify-between px-3 py-4">
-          <a href="https://supabase.com">
+          <a href="https://supabase.com" target="_blank">
             <Image
               width="30"
               height="30"
@@ -160,7 +163,11 @@ export default function Page() {
           </a>
         </div>
         <div className="border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded flex items-center justify-center px-3 py-4">
-          <a className="flex items-center gap-2" href="https://vercel.com">
+          <a
+            className="flex items-center gap-2"
+            href="https://vercel.com"
+            target="_blank"
+          >
             <svg
               width="19"
               height="19"
@@ -181,6 +188,7 @@ export default function Page() {
           <a
             className="flex items-center gap-2"
             href="https://code.visualstudio.com/"
+            target="_blank"
           >
             <Image
               width="30"
@@ -192,19 +200,23 @@ export default function Page() {
           </a>
         </div>
         <div className="border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded flex items-center justify-between px-3 py-4">
-          <a href="https://supabase.com">
+          <a href="https://supabase.com" target="_blank">
             <svg width="19" height="19" role="img" aria-label="Supabase logo">
               <use href="/sprite.svg#supabase" />
             </svg>
           </a>
         </div>
         <div className="border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded flex items-center justify-between px-3 py-4">
-          <a href="https://pnpm.io">
+          <a href="https://pnpm.io" target="_blank">
             <Image width={60} height={60} alt="PNPM logo" src={pnpmLogo} />
           </a>
         </div>
         <div className="border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded flex items-center justify-center px-3 py-4">
-          <a className="flex items-center gap-2" href="https://notion.so">
+          <a
+            className="flex items-center gap-2"
+            href="https://notion.so"
+            target="_blank"
+          >
             <Image
               width="30"
               height="30"
@@ -220,8 +232,8 @@ export default function Page() {
           <a
             className="flex items-center hover:text-neutral-800 dark:hover:text-neutral-19 transition-all"
             rel="noopener noreferrer"
-            target="_blank"
             href="https://twitter.com/HayitbekD"
+            target="_blank"
           >
             <ArrowIcon />
             <p className="h-7 ml-2">follow me</p>
@@ -232,7 +244,7 @@ export default function Page() {
   );
 }
 
-function Badge(props) {
+function Badge(props: ComponentPropsWithoutRef<"a">) {
   return (
     <a
       {...props}

@@ -7,14 +7,14 @@ import { SandpackCSS } from "../../shared/ui/SandPackCss/SandPackCSS";
 // components
 import { Navbar } from "../../components/nav";
 
+// config
+import { ThemeProvider } from "src/shared/config/theme/theme-provider";
+
 // assets
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
-import "../../styles/globals.css";
 
-
-
-const cx = (...classes) => classes.filter(Boolean).join(" ");
+const cx = (...classes: string[]) => classes.filter(Boolean).join(" ");
 
 export default function RootLayout({
   children,
@@ -25,7 +25,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={cx(
-        "text-black bg-white dark:text-white dark:bg-[#111010]",
+        "bg-background text-foreground",
         GeistSans.variable,
         GeistMono.variable
       )}
@@ -33,13 +33,20 @@ export default function RootLayout({
       <head>
         <SandpackCSS />
       </head>
-      <body className="antialiased max-w-2xl mb-40 flex flex-col md:flex-row mx-4 mt-8 lg:mx-auto">
-        <main className="flex-auto min-w-0 mt-6 flex flex-col px-2 md:px-0">
-          <Navbar />
-          {children}
-          <Analytics />
-          <SpeedInsights />
-        </main>
+      <body className="bg-background text-foreground">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <main className="flex-auto container max-w-xl min-w-0 mt-6 flex flex-col px-2 md:px-0">
+            <Navbar />
+            {children}
+            <Analytics />
+            <SpeedInsights />
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   );

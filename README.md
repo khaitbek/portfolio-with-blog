@@ -42,6 +42,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [x] Add support for localization.
 - [x] Use next-intl's Link component instead of next/link.
 - [x] Multi-language content.
-- [ ] Add support for dark mode.
+- [x] Add support for dark mode.
 - [ ] Add support for search.
 - [ ] Add support for social media sharing.
