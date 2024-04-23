@@ -1,5 +1,6 @@
 // components
 import { ModeToggle } from "src/shared/config/theme/mode-toggle";
+import { LocaleSwitcher } from "src/shared/ui/LocaleSwitcher/LocaleSwitcher";
 import { Link } from "../shared/config/i18n/navigation";
 
 const navItems = {
@@ -37,7 +38,10 @@ export function Navbar() {
             })}
           </ul>
         </nav>
-        <ModeToggle />
+        <div className="flex gap-6">
+          <ModeToggle />
+          <LocaleSwitcher />
+        </div>
       </div>
     </aside>
   );

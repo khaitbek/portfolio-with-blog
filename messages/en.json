@@ -1,5 +1,9 @@
 {
   "Index": {
     "title": "Hello from Hayitbek Yusupov!"
+  },
+  "LocaleSwitcher": {
+    "label": "Change language",
+    "locale": "{locale, select, uz {🇺🇿 Uzbek} en {🇺🇸 English}  other {Unknown}}"
   }
 }

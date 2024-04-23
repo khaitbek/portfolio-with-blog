@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-import typography from "@tailwindcss/typography";
 
 module.exports = {
   darkMode: ["class"],
@@ -84,7 +83,6 @@ module.exports = {
     future: {
       hoverOnlyWhenSupported: true,
     },
-    plugins: [typography],
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 };

@@ -1,9 +1,6 @@
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-// types
-import { SandpackCSS } from "../../shared/ui/SandPackCss/SandPackCSS";
-
 // components
 import { Navbar } from "../../components/nav";
 
@@ -18,21 +15,22 @@ const cx = (...classes: string[]) => classes.filter(Boolean).join(" ");
 
 export default function RootLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: {
+    locale: string;
+  };
 }) {
   return (
     <html
-      lang="en"
+      lang={params.locale}
       className={cx(
         "bg-background text-foreground",
         GeistSans.variable,
         GeistMono.variable
       )}
     >
-      <head>
-        <SandpackCSS />
-      </head>
       <body className="bg-background text-foreground">
         <ThemeProvider
           attribute="class"
@@ -40,7 +38,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="flex-auto container max-w-xl min-w-0 mt-6 flex flex-col px-2 md:px-0">
+          <main className="flex-auto container pb-6 max-w-xl min-w-0 mt-6 flex flex-col px-2 md:px-0">
             <Navbar />
             {children}
             <Analytics />

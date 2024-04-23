@@ -1,5 +1,9 @@
 {
   "Index": {
     "title": "Salom dunyo!"
+  },
+  "LocaleSwitcher": {
+    "label": "Tilni o'zgartirish",
+    "locale": "{locale, select, uz {🇺🇿 O'zbekcha} en {🇺🇸 English} other {Boshqa}}"
   }
 }

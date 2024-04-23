@@ -127,14 +127,14 @@ export default function Page() {
           <Badge className="ml-2"> React </Badge>,
         </p>
       </div>
-      <div className="my-8 flex flex-col space-y-4 w-full">
+      <ul className="my-8 flex flex-col space-y-4 w-full">
         <BlogLink name="Tanstack Router" slug="tanstack-router" />
         <BlogLink
           name="Typescriptni o'rganishingiz kerakmi?"
           slug="should-you-learn-typescript"
         />
         <BlogLink name="Modern CSS" slug="modern-css-2023" />
-      </div>
+      </ul>
       <div className="prose prose-neutral dark:prose-invert">
         <p>I am in love with using these tools on a daily basis</p>
       </div>
@@ -151,7 +151,7 @@ export default function Page() {
           </a>
         </div>
         <div className="border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 rounded flex items-center justify-between px-3 py-4">
-          <a href="https://tanstack.com">
+          <a href="https://tanstack.com" target="_blank">
             <span
               className="
             inline-block text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-yellow-500
