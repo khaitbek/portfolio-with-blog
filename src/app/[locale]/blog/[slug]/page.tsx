@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { unstable_setRequestLocale } from "next-intl/server";
 import { unstable_noStore as noStore } from "next/cache";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
@@ -87,6 +88,7 @@ function formatDate(date: string) {
 }
 
 export default function Blog({ params }) {
+  unstable_setRequestLocale(params.locale);
   let post = getBlogPosts(params.locale).find(
     (post) => post.slug === params.slug
   );

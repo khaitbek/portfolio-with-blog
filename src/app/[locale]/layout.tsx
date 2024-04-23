@@ -1,10 +1,12 @@
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { unstable_setRequestLocale } from "next-intl/server";
 
 // components
 import { Navbar } from "../../components/nav";
 
 // config
+import { locales } from "src/shared/config/i18n/i18n";
 import { ThemeProvider } from "src/shared/config/theme/theme-provider";
 
 // assets
@@ -12,6 +14,10 @@ import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 
 const cx = (...classes: string[]) => classes.filter(Boolean).join(" ");
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
 export default function RootLayout({
   children,
@@ -22,6 +28,7 @@ export default function RootLayout({
     locale: string;
   };
 }) {
+  unstable_setRequestLocale(params.locale);
   return (
     <html
       lang={params.locale}

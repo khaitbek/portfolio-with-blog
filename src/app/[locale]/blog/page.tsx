@@ -1,3 +1,5 @@
+import { unstable_setRequestLocale } from "next-intl/server";
+
 // components
 import { BlogLink } from "src/shared/ui/BlogLink/BlogLink";
 
@@ -12,6 +14,8 @@ export const metadata = {
 };
 
 export default function BlogPage({ params }: { params: { locale: string } }) {
+  unstable_setRequestLocale(params.locale);
+
   const allBlogs = getBlogPosts(params.locale as any);
 
   return (

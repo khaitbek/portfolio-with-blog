@@ -13,6 +13,7 @@ import { BlogLink } from "../../shared/ui/BlogLink/BlogLink";
 import { ComponentPropsWithoutRef } from "react";
 
 // assets
+import { unstable_setRequestLocale } from "next-intl/server";
 import devfest from "public/images/me_at_dev_fest.jpg";
 import hackathon from "public/images/me_at_najot_talim_hackathon.jpg";
 import bismillah from "public/images/me_at_najottalim.jpg";
@@ -24,7 +25,9 @@ import pnpmLogo from "public/images/pnpm_logo.png";
 import vsCode from "public/images/vscode.svg";
 import nextjs from "public/next-logo.svg";
 
-export default function Page() {
+export default function Page({ params }) {
+  unstable_setRequestLocale(params.locale);
+
   const t = useTranslations("Index");
   return (
     <section>

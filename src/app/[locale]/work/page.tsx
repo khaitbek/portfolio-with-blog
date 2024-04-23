@@ -1,3 +1,5 @@
+import { unstable_setRequestLocale } from "next-intl/server";
+
 // components
 import {
   Paragraph,
@@ -6,7 +8,9 @@ import {
   TypographyH4,
 } from "src/shared/ui/Typography/Typography";
 
-export default function Page() {
+export default function Page({ params }) {
+  unstable_setRequestLocale(params.locale);
+
   return (
     <section>
       <TypographyH2>my work</TypographyH2>
