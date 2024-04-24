@@ -22,11 +22,13 @@ export function generateStaticParams() {
 export default function RootLayout({
   children,
   params,
+  blogModal,
 }: {
   children: React.ReactNode;
   params: {
     locale: string;
   };
+  blogModal: React.ReactNode;
 }) {
   unstable_setRequestLocale(params.locale);
   return (
@@ -48,6 +50,8 @@ export default function RootLayout({
           <main className="flex-auto container pb-6 max-w-xl min-w-0 mt-6 flex flex-col px-2 md:px-0">
             <Navbar />
             {children}
+            {blogModal}
+            <div id="modal-root" />
             <Analytics />
             <SpeedInsights />
           </main>

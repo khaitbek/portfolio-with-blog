@@ -45,7 +45,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [x] Add support for dark mode.
 - [x] Fix home page BlogLink components.
 - [x] Fix work page list components.
-- [ ] Add a language switcher.
+- [x] Add a language switcher.
 - [ ] Add support for search.
 - [ ] Add parallel routes for artices.
 - [ ] Add support for social media sharing.
