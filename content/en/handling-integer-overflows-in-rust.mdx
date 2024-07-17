@@ -1,0 +1,110 @@
+---
+title: Handling Integer Overflows in Rust
+description: Handling integer overflows is a common task in programming. In this article, we will explore how to handle integer overflows in Rust and how to avoid them.
+categories: Rust
+publishedAt: "2024-07-24"
+summary: "Handling integer overflows in Rust using overflowing_add and overflowing_mul methods"
+---
+
+[](https://github.com/khaitbek)
+
+[Hayitbek Yusupov](https://github.com/khaitbek)
+
+Often when we use different math calculations in our programs, we often forget to deal with overflows. Let's take a look at this code example: 
+```
+fn find_perimeter_and_surface_area_of_a_rectangle(height: i128, width: i128) -> (i128, i128) {
+    let surface_area = height * width;
+    let perimeter = 2 * (width + height);
+    return (perimeter, surface_area);
+}
+```
+This function takes the width & height of a rectangle, calculates the surface area and the perimeter of the rectangle and returns both values as a tuple. Here, we're working with the `i128` type so that our program can work with large numbers. Let's check if our code works:
+```
+fn main() {
+    println!("{:?}", find_perimeter_and_surface_area_of_a_rectangle(5, 6));
+}
+```
+We can see that we get `(22, 30)` back. Let's pass in some big numbers:
+```
+fn main() {
+    println!(
+        "{:?}",
+        find_perimeter_and_surface_area_of_a_rectangle(5000000, 6000000)
+    );
+}
+```
+And we get back `(22000000, 30000000000000)`. Looks like our code can easily work with big numbers. But we're not quite there yet. Let's see how this code might fail:
+```
+fn main() {
+    println!(
+        "{:?}",
+        find_perimeter_and_surface_area_of_a_rectangle(i128::max_value(), i128::max_value())
+    );
+}
+```
+And now, when we run our code, it panics:
+```
+thread 'main' panicked at src/main.rs:9:24:
+attempt to multiply with overflow
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+```
+What's happening here? Well, our function can work with numbers up to i128 range. And we are passing the max value of an i128 number as a width and height. In order to calculate the perimeter and the surface of the given rectangle, our code needs to **multiply, add** those two i128 values. And logically, when you add or multiply two values that are considered as a max value of i128, you get overflow. That's why our program panics
+So, we saw the problem, what can we do to fix it? Well, we can make use of Rust's error handling options. Luckily, Rust gives us many robust APIs for this. Let's modify our `find_perimeter_and_surface_area_of_a_rectangle` function:
+```
+fn find_perimeter_and_surface_area_of_a_rectangle(
+    height: i128,
+    width: i128,
+) -> Result<(i128, i128), &'static str> {
+    let (surface_area, is_overflowing_surface_area) = height.overflowing_mul(width);
+
+    let (sum_of_width_height, is_overflowing_sum_of_width_height) = width.overflowing_add(height);
+
+    let (perimeter, is_overflowing_perimeter) = 2_i128.overflowing_mul(sum_of_width_height);
+
+    if is_overflowing_surface_area || is_overflowing_sum_of_width_height || is_overflowing_perimeter
+    {
+        return Err("Overflow occured");
+    }
+
+    return Ok((perimeter, surface_area));
+}
+```
+Here, we are using the `overflowing_mul()` and `overflowing_add()` methods which safely adds or multiplies values when they overflow. The reason to use these methods is they return a tuple containing a boolean value indicating whether an overflow has happened or not. Then we can use use that boolean variable to show an error message to let the user know that overflow has happened. 
+We also use Rust's Result type to return either a valid value or an error message. Then we can use something like pattern matching where we call this function. For example, let's modify our `main function`:
+```
+fn main() {
+    let result =
+        find_perimeter_and_surface_area_of_a_rectangle(i128::max_value(), i128::max_value());
+
+    match result {
+        Err(error) => println!("Error occured: \n {:?}", error),
+        Ok(result) => {
+            let (perimeter, surface_area) = result;
+            println!("Perimeter of the rectangle is: {}", perimeter);
+            println!("Surface area of the rectangle is: {}", surface_area);
+        }
+    }
+}
+```
+Pattern matching allows us to handle both the error and the success states easily.
+
+Let's check our code:
+
+```
+find_perimeter_and_surface_area_of_a_rectangle(i128::max_value(), i128::max_value())
+```  
+We get back our custom error which is a bit nicer than our program panicking:
+```
+Error occured: 
+ "Overflow occured"
+```
+Now, let's check it one more time:
+```
+find_perimeter_and_surface_area_of_a_rectangle(5, 6);
+```
+And now we get back valid values:
+```
+Perimeter of the rectangle is: 22
+Surface area of the rectangle is: 30
+```
+In this blog post, we learned how to work with tuples, how to handle integer overflows, how to use Rust's Result type and pattern matching. 
