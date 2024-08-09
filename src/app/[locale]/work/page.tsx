@@ -1,4 +1,4 @@
-import { unstable_setRequestLocale } from "next-intl/server";
+import {unstable_setRequestLocale} from "next-intl/server";
 
 // components
 import {
@@ -8,7 +8,7 @@ import {
   TypographyH4,
 } from "src/shared/ui/Typography/Typography";
 
-export default function Page({ params }) {
+export default function Page({params}) {
   unstable_setRequestLocale(params.locale);
 
   return (
@@ -31,43 +31,60 @@ export default function Page({ params }) {
           <a href="https://realsoft.uz" target="_blank">
             Realsoft
           </a>{" "}
-          on September 2023 as a fullstack developer. I have been working with
-          the <strong>React.js</strong> and <strong>Vue.js</strong> teams to
-          ship beatiful, robust and accessible user interfaces
+          on July 2023 as a fullstack developer. I have been working with the{" "}
+          <strong>React.js</strong> and <strong>Vue.js</strong> teams to develop
+          cross-functional, robust, performant web applications
         </Paragraph>
         <ul>
           <li>
-            In September, I started my internship by helping the{" "}
-            <a href="https://expert.uz" target="_blank">
-              expert.uz
-            </a>{" "}
-            team to build the{" "}
-            <a href="https://expert.uz/pages/community_catalog" target="_blank">
-              <strong>community</strong>
-            </a>{" "}
-            module. I used tools like <strong>PostgreSQL</strong> and{" "}
-            <strong>Vue.js</strong>
+            Helped the frontend teams develop robust web applications using
+            React.js, Vue.js
           </li>
           <li>
-            In November, I was promoted to Junior fullstack developer at
-            Realsoft and started working on the project called{" "}
-            <a href="https://kh.smart-agro.uz/" target="_blank">
-              Smart Agro
-            </a>
-            . My goal was to build an interactive map. I used the{" "}
-            <a href="https://leafletjs.com/" target="_blank">
-              <strong>Leaflet.js</strong>
-            </a>
-            library to build an awesome, accessible, very unique interactive map
+            Optimized project performances by applying complex code-splitting
+            strategies
           </li>
           <li>
-            Starting January 2024, I joined the{" "}
-            <a href="https://realpay.uz/" target="_blank">
-              <strong>Realpay </strong>
+            Created internal reusable packages, libraries & ui kits for managing
+            reusable code
+          </li>
+          <li>
+            Used modular-monolithic architectural methodology called{" "}
+            <a target="_blank" href="https://feature-sliced.design">
+              FSD
             </a>
-            team to help them build user interfaces for their payment system. I
-            am collaborating with <strong>Java</strong> and{" "}
-            <strong>React.js</strong> developers team
+          </li>
+          <li>
+            Worked with monorepositories using Turborepo, Docker, Github, Gitlab
+          </li>
+        </ul>
+        <hr />
+        <TypographyH3 className="font-medium text-xl mb-1 tracking-tighter">
+          Projects
+        </TypographyH3>
+        <ul>
+          <li>
+            <TypographyH4>
+              <a href="https://realpay.uz" target="_blank">
+                RealPay (2023 - Present)
+              </a>
+            </TypographyH4>
+            <Paragraph>
+              Working with the frontend team to develop cross-functional user
+              interfaces for an internal payment system called RealPay.
+            </Paragraph>
+          </li>
+          <li>
+            <TypographyH4>
+              <a href="https://new.expert.uz" target="_blank">
+                Expert.uz (2023 - Present)
+              </a>
+            </TypographyH4>
+            <Paragraph>
+              Working with the frontend team to make an all-in-one product that
+              includes features from many popular platforms such as Upwork,
+              Fiverr, Stackoverflow.
+            </Paragraph>
           </li>
         </ul>
         <hr />
@@ -79,7 +96,7 @@ export default function Page({ params }) {
             Realsoft
           </a>
           , I actively spend my time <strong>freelancing</strong>. I have
-          managed to finish a few projects using technologies like{" "}
+          managed to work on projects using technologies like{" "}
           <strong>React.js</strong> and <strong>Next.js</strong> for clients
           from <strong>Uzbekistan</strong>
         </Paragraph>
