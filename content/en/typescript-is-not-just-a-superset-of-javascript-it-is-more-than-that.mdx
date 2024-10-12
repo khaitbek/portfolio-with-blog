@@ -1,0 +1,146 @@
+---
+title: Typescript is not just a superset of Javascript, it is more than that 
+description: I am so tired of seeing die hard, old Javascript developers misleading people by saying that Typescript is just a superset of Typescript. Technically, Typescript is a superset of Javascript, but it is not the only thing that Typescript can offer. Hopefully, this article will be a game-changer for developers who are holding themselves back from Typescript.
+categories: Typescript, Static programming
+publishedAt: "2024-10-12"
+summary: "Typescript is more than you think it is"
+---
+
+## The drama
+
+For the last few weeks, I have been seeing a lot of die hard Javascript developers making disrespectful statements about Typescript. Everybody has their opinion but I am so sick of people who haven’t deep dived into the world of Typescript complaining about it. I am here to tell them - Typescript doesn’t suck, they are just bad at it.
+
+## Opinions developers give about Typescript
+
+### Typescript is just types built into Javascript
+
+One of the most popular stereotypes about Typescript is, it is just a superset of Typescript. Well, that’s what the homepage of Typescript says, right? Right? Technically, it’s true that Typescript is built on top of Javascript. But do you know how do I smell one’s knowledge about Typescript? It is when they keep repeating the words - “Typescript is just a superset of Javascript”. Repeating the words on the documentation to make yourself look smart is easy. But, explaining something with your own understanding, with your own words is the thing that truly showcases your knowledge of it. So, please, at least do some rtfm about Typescript!
+
+### Typescript makes life harder with `any`
+
+This one is classic. I keep hearing them say:
+
+> Typescript makes life harder with `any`
+> 
+
+So, we clearly can see that they see `any` as a weak point of Typescript. We are not gonna dive into why does Typescript even has `any` but, I am just going to say that if you complain about the usage of `any` , that’s clearly a skill issue
+
+### Typescript takes more time
+
+One of the opinions I can somewhat agree with is that Typescript takes more time. When using a staticly typed programming language, you always spend extra time building your type system. Initially, it might take more time to configure things, you might find yourself writing extra bit of boilerplate of code. But in the long run, it pays you off. The amount of time you are going to save is a lot more than the amount of time you lose at the beginning.
+
+### You are still writing Javascript when using Typescript
+
+Typescript is compiled down to Javascript. Yes, technically, this opinion might be true, but it is missing a lot of things. I mean, all of our code gets transpiled into 0s and 1s, right? So does this mean that we all write machine code?
+
+## What’s wrong with those opinions?
+
+So far we have covered most well-known opinions Javascript developers make about Typescript. Now, let’s see what’s wrong with those opinions
+
+### Lack of knowledge about what Typescript is
+
+I pointed out that when people keep copycatting the words on the home page of Typescript - “Typescript is a superset of Javascript”, I believe that they don’t have much experience with Typescript. The reason is, when a Javascript developer really starts to understand what Typescript can do, that’s a life-changing moment. Their vocabulary does not just consist of “a superset of Javascript”, but it consists of words like **staticly typed language**, **great developer experience, having a compiler that catches your bugs**. I am going to show you an image that properly describes what is on my mind, then we will move on:
+
+![image.png](https://imgs.search.brave.com/bS1MvSPEocxSZ_8J_iWQNui1G0mZdkcKwUkYjkbBBAA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLmV0/c3lzdGF0aWMuY29t/LzEwNDM2MTEzL3Iv/aWwvMDdkNWE1Lzg1/NzYzOTA5Ni9pbF82/MDB4NjAwLjg1NzYz/OTA5Nl9jajA5Lmpw/Zw)
+
+### What is the purpose of the `any` type in Typescript?
+
+Okay, now let’s talk about `any` . The type `any` in Typescript is just to tell the Typescript compiler “Hey, there is no way I can know the exact type of something, so I want you to trust me”. An example use case would be having a utility type that gets the return type of any function:
+
+```tsx
+type ReturnType<T extends (...args: any[]) => any> =
+  T extends (...args: any[]) => infer R ? R : never;
+
+const myFunction = (input: string) => {
+  console.log("Hey!");
+};
+
+type Result = ReturnType<typeof myFunction>;
+```
+
+You can check out [Matt Pocock’s article](https://www.totaltypescript.com/any-considered-harmful) to learn more. The idea is, there are some edge-cases where you don’t have any better option to tell the compiler to trust you. But, these edge-cases are not a lot. So, if you happen to be using `any` , you should at least rethink your life choices. Maybe you are overusing it?
+
+### Catching bugs with the help of a compiler vs catching bugs at runtime
+
+I love this one. C was one of the first programming languages that I learned. Up until the point I started learning programming languages such as Python, Javascript, I enjoyed a language where I can have proper typings on my codebase. As soon as I switched to Javascript, I lost that joy. Because once you get used to having explicit types in your programs, there is no going back. Now, I want you to give yourself a question. If you had some kind of tool that catches your bugs for you in development so that you don’t have to catch those bugs by writing a `console.log()` and opening up your browser console? Well, that’s exactly what Typescript compiler does for you. It checks your code so that you can have a big picture of your application. It catches your bugs for you, it’s got your back!
+
+### Static vs dynamic programming languages
+
+As I said, I am not a huge fan of dynamic programming languages. Because there is not a chance to make yourself certain that your code doesn’t fail in those languages. You have to write a lot of crappy guards to make sure your Javascript code is kind of **type-safe**. 
+
+Static typed languages are there for you to make your code more efficient. For example, when you need a memory efficient apps, you use something like Rust or C++. In those languages, you don’t have things like `number` , but you have things like 8-bit integer, 16-bit integer, 32-bit integer, signed & unsigned integer. They exist because you can allocate different amount of space from memory depending on your use case. 
+
+Another thing that I really love about static typed languages is, they help you to know what goes in & out of your code. For example, let’s say you have a huge codebase where you have like tons of utility functions that have proper typings for the arguments that they receive, and they also have an explicit return types. It is much-much easier for new developers to join and understand the codebase. This is why I have been trying to use explicit return types in my functions. I also type my arguments & I write a JS Doc comment for each argument so that when people use use my code they can just enjoy the power of LSPs. If you happen to not know about LSP, stick to the end. 
+
+There are people who believe that they have great knowledge of Javascript. They believe that if you need types to make sure your code is safe, you don’t know Javascript well enough. Agree to disagree. I am here to proudly tell that I don’t think I know JS so well, even though I have been using it for like 3 years now. Typescript actually helps me understand Javascript. By having a type system, I am certain about what my Javascript code is doing. So, if you are one of those people who think they know JS, be humble. You don’t know JS. There is even a book with that name :)
+
+## No typescript, no javascript autocompletions
+
+### Did you know your IDE uses LSPs for autocompletions?
+
+I believe y’all use some kind of IDE or a text editor. I have used VS Code, VIM, Sublime Text, PyCharm, Zed and other stuff I don’t even remember. But they all have this cool autocompletions. Have you ever wondered how they do that? They use a thing called [Language Server Protocol](https://microsoft.github.io/language-server-protocol/). LSPs are the way your IDE provides you all that goody autocompletion, go-to definitions, hints and etc. Why am I bringing this up? Javascript has its own [LSP](https://github.com/typescript-language-server/typescript-language-server), the LSP which is powered by Typescript. So, Typescript has been helping you for all these years without you knowing it. Typescript is not just writing type definitions my friends. It is more than that. Imagine having to write javascript without any intellisense? That would be painful. But Typescript has your back!
+
+## Typescript wizardry
+
+Now, I want you to show just a few tools that are powered by Typescript that can drastically improve your developer experience. 
+
+### Tanstack Router
+
+Routing has been one of the most painful things for me. Imagine having a multi-page app that is so dynamic, meaning that pages have things like search param validation, query param validation and etc. It was so hard to make sure that I am passing the right params to my page and my page was receiving them in the right way. I just had to wish myself luck. But now, [Tanstack Router](https://tanstack.com/router/latest/docs/framework/react/overview) helps me to build a fully type-safe routing system that warns me if I accidentally do something stupid. It has features like:
+
+- Typesafe navigation
+- File-based Route Generation
+- Typesafe JSON-first Search Params state management APIs
+- Path and Search Parameter Schema Validation
+- Custom Search Param parser/serializer support
+- Search param middleware
+
+### Openapi code generation
+
+This one is super cool. Ever struggled to work with a complicated API that has complex structured response types? I have recently worked with the [Amadeus API](https://developers.amadeus.com/) which was so horrific to work with. Because the responses that it returns was difficult to understand. But, I have discovered a [package](https://heyapi.vercel.app/) that is powered by Typescript that I can just give the URL of a swagger documentation, and it is going to generate all the necessary type definitions for all the queries and mutations. The crazy thing about this is, whenever the API changes, I can re-generate those type definitions automatically and I can safely work with my API. 
+
+### Polymorphic components
+
+This one is for people who have tried or are trying to build some kind of ui library. Imagine you want to add some component let’s say you want to add a `button` component. You make it a `button` element. But later on, you realize that you have `a` element that needs to have the same styles as your `button` component. This is where polymorphic components are super useful. I have recently used a polymorphic component pattern when I needed to have an element that needs to wrap the text to one line, have a maximum number of characters and if the number of characters exceed, it just puts three dots at the end:
+
+```tsx
+import type { ComponentPropsWithoutRef, ElementType } from "react";
+
+// helpers
+import { cn } from "shared/lib/helpers/classNames";
+
+type LimitedTextProps<As extends ElementType = "div"> = {
+    as?: As
+} & ComponentPropsWithoutRef<As>
+
+export const LimitedText = <As extends ElementType = "div">({ className, ...props }: LimitedTextProps<As>) => {
+    return (
+        <div
+            className={cn(
+                "max-w-[20ch] overflow-hidden overflow-ellipsis whitespace-nowrap",
+                className
+            )}
+            {...props}
+        />
+
+    )
+}
+```
+
+The good thing about this component is, I can render this component as any valid html element. When I pass `as=”a”` I get autocomplete based on the properties of the `a` element. If I do `as="button"`  and then also do `href="#someLink"` I am gonna get a Typescript error! Isn’t that nice? [Mantine UI](https://mantine.dev/core/button/#polymorphic-component) has the exact behaviour too!
+
+### Localization
+
+I started working with localization from the very first days of my web development. And honestly, the developer experience is not good. I had to write some json files, then I needed to remember the names of translations so that I can use them in my app. But now with the help of Typescript, I don’t have to store all that information on my mind. I can just let Typescript scan through my json files, and it is going to give me an autocomplete. It saves me hours of work!
+
+https://www.i18next.com/overview/typescript
+
+### Runtime type-checking with zod
+
+The biggest issue with Typescript that I have is I can’t do runtime checking. But, now I can use Typescript alongside zod. Zod helps you have type-checking in development & at runtime at the same time.
+
+https://www.totaltypescript.com/tutorials/zod
+
+## Typescript is not as bad as you think
+
+After all I have said, I want to conclude by saying that I am not here to tell you that Typescript is a great, awesome language. I admit that Typescript has downsides too. Nothing is perfect. You have to be in both sides to give an opinion on this topic. I have used dynamic languages like Python & Javascript and I have also used languages like C, Rust, Typescript. I am not praising myself, but I can tell the difference. Nothing is perfect, no language is perfect, can’t be perfect. My point is, before blaming some kind of language, rtfm about it. It might open up your eyes. Peace nerds!
