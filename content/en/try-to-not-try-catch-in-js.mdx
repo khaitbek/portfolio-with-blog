@@ -1,0 +1,210 @@
+---
+title: Try to not try/catch in JavaScript
+description: Error handling in JavaScript is hard. What you're left with is a try/catch block that never tells you what kind of error you are actually trying to catch. Over the years we were sacred to use it. Well, not anymore.
+categories: JavaScript,Typescript
+publishedAt: "2025-11-23"
+summary: "Stop using try/catch in JavaScript. Use neverthrow instead!"
+---
+
+## Good is the enemy of the great
+
+JavaScript is a **dynamic** programming language. It comes with its own costs. Dynamic languages like JavaScript and Python are beloved because of their easy learning curve. I can't believe that learning a dynamic programming language (like JavaScript, Python, Ruby) is easier than learning a staticly typed programming language (like C, C++, Java, Rust, Go). But the easiness can be suspicious sometimes. There is a quote I read in the book Good to Great that says: "Good is the enemy of the great". I am sure the same applies to programming languages, especially when we're talking about the difference between dynamic and staticly typed programming languages. But you're not here to read about all of what I'm talkin about. You're most likely to here to find out why I think you should try to not try catch in JavaScript.
+
+## Error handling in JavaScript
+
+Try/catch pattern is widely used in programming languages. Think about why the title of the article ends with JavaScript. I could've said: "Try to not try/catch". But there are two reasons why this article is only about try/catch blocks in JavaScript:
+
+1. Most of my experience is related to JavaScript. It's the language I use every single day
+2. Error handling doesn't suck in other programming languages (like Python, PHP, Java) which have the same syntax like try/catch
+   Despite of my experience with JavaScript, I've also written some amount of code in C, Python and Rust. I have to admit that when I am writing code in JavaScript, I have to be extra cautious than when I am writing code in Rust or Python. Let me give you a few reasons
+
+## Reason 1: Not knowing what type of error I am getting
+
+Let's look at the code below:
+
+```javascript
+try {
+  // Code that might throw an error
+  let result = someFunctionThatMightFail();
+  console.log(result);
+} catch (error) {
+  // Code to handle the error
+  console.error("An error occurred:", error.message);
+  // You could also display a message to the user or log the error to a server
+}
+```
+
+There are many problems with this code. But what I want you to focus on is the `catch` block. Can you tell me what _type_ of error we are getting? Now we see the true meaning behind the word **dynamic**. Wait, how does Python do it?
+
+```python
+try:
+    num1 = int(input("Enter a number: "))
+    num2 = int(input("Enter another number: "))
+    result = num1 / num2
+    print(f"The result is: {result}")
+except ValueError:
+    print("Invalid input: Please enter a valid integer.")
+except ZeroDivisionError:
+    print("Error: Cannot divide by zero.")
+except Exception as e:
+    print(f"An unexpected error occurred: {e}")
+else:
+    print("Division performed successfully.")
+finally:
+    print("Execution of the try-except block is complete.")
+```
+
+I believe you can spot the difference. In Python, you do not _know_ what type of error you're getting, but you can _expect_ it. There is a workaround for _expecting_ the type of the errors in JavaScript:
+
+```javascript
+try {
+  // Code that might throw an error
+  let result = someFunctionThatMightFail();
+  console.log(result);
+} catch (error) {
+  if (error instanceof SomeErrorClass) {
+    // do something
+  } else if (error instanceof SomeOtherClass) {
+    // do something
+  } else {
+    // do something
+  }
+}
+```
+
+The workaround is not the end of the world you might say. But, this leads to us to the reason #2
+
+## Reason 2: Context Switch
+
+Let's look at the code below:
+
+```javascript
+function first() {
+  throw new Error("Error");
+}
+function second() {
+  throw new Error("Error");
+}
+function third() {
+  throw new Error("Error");
+}
+
+function main() {
+  // we should call three functions one-by-one
+}
+```
+
+We have 3 functions which need to be called in order. Which means:
+
+- we first execute `first()`, if it succeeds we execute `second()`
+- we execute `second()`, if it succeeds we execute `third()`
+- we execute `third()`, if it succeeds, our program is successfully finished
+  Let's not forget that we have to handle errors from each function. Each function `throws` an error. Let's see how we can implement the flow in JavaScript using our **beloved** try/catch block.
+
+```javascript
+function main() {
+  try {
+    const firstResult = first();
+    try {
+      const secondResult = second();
+      try {
+        const thirdResult = third();
+      } catch (error) {}
+    } catch (error) {}
+  } catch (error) {}
+}
+```
+
+Here's a bit refactored version that uses `classes` to throw unique errors from each function and use `instanceof` checks inside the `catch` blocks:
+
+```javascript
+class ErrorFromFirstFn extends Error {}
+class ErrorFromSecondFn extends Error {}
+class ErrorFromThirdFn extends Error {}
+
+function main() {
+  try {
+    const firstResult = first();
+    const secondResult = second();
+    const thirdResult = third();
+  } catch (error) {
+    // handle any error from first/second/third
+    if (error instanceof ErrorFromFirstFn) {
+    }
+    if (error instanceof ErrorFromSecondFn) {
+    }
+    if (error instanceof ErrorFromThirdFn) {
+    }
+  }
+}
+```
+
+To be honest, this all makes me go back to the days when we had callback hell in JavaScript. When I learned `async/await` I was thrilled. Because I did not have to read horrible nested chain of function calls. What if there was an `async/await` for our errors, too?
+
+## Reason 3: Throwing instead of returning
+
+In JavaScript, we were always taught to _throw_ errors. Imagine a new member joining your gigantic JavaScript codebase. He has to analyze the whole codebase just to figure our where he possibly needs to _catch_ errors. Let's say he is reading through a function. The function has a descriptive name that may help to understand. But it _throws_ errors. The function body does not specify that the function may at some point _throw_ errors. It is easy for a human eye to miss those throw statements. So at some point, he will realize that there is an error in some anonymous place. Now he has to go back and read the code again. This is the problem with throwing random errors in our functions. What if, I say, or the authors of the phenomenal work [neverthrow](https://www.npmjs.com/package/neverthrow) say, we never _throw_ errors, but we always _return_ them? Well, let's see:
+
+```javascript
+import { err, isErr } from "neverthrow";
+function first() {
+  return err("Error from first function");
+}
+function second() {
+  return err("Error from second function");
+}
+function third() {
+  return err("Error from third function");
+}
+
+function main() {
+  const firstResult = first();
+  if (firstResult.isErr()) {
+    console.log(firstResult.error);
+    return;
+  }
+  const secondResult = second();
+  if (secondResult.isErr()) {
+    console.log(secondResult.error);
+    return;
+  }
+  const thirdResult = first();
+  if (thirdResult.isErr()) {
+    console.log(thirdResult.error);
+    return;
+  }
+}
+```
+
+What we're doing here is, we are _returning_ the errors so that the consumers must handle it.
+We're also using `isErr()` helper from [neverthrow](https://www.npmjs.com/package/neverthrow) that checks if the function _returned_ an error. Then we're using an early return to immediately stop the program. We don't have nested blocks and we're not switching our focus from one block to another block. Everything is in the same, one flow.
+
+## neverthrow
+
+A few months ago I started giving Rust a try. I wouldn't say I am smart enough to grasp all the ideas behind the language. But, thankfully, I at least got one thing from it and applied it to my everyday work. I was fascinated when I first discovered the package [neverthrow](https://www.npmjs.com/package/neverthrow) because it is the implementation of the [Rust's Result type](https://doc.rust-lang.org/std/result/) in JavaScript. So, I started using it almost everywhere. Then a few days later, I saw this package getting mentioned and discussed in much bigger audiences. What makes it special for me is its smooth integration with TypeScript:
+
+```typescript
+declare function mayFail1(): Result<number, string>;
+declare function mayFail2(): Result<number, string>;
+
+function myFunc(): Result<number, string> {
+  const result1 = mayFail1();
+  if (result1.isErr()) {
+    return err(`aborted by an error from 1st function, ${result1.error}`);
+  }
+  const value1 = result1.value;
+
+  const result2 = mayFail2();
+  if (result2.isErr()) {
+    return err(`aborted by an error from 2nd function, ${result2.error}`);
+  }
+  const value2 = result2.value;
+
+  // And finally we return what we want to calculate
+  return ok(value1 + value2);
+}
+```
+
+If we look at the function above, we can see our function body now has some more data: it includes the return type (success and error states, both). This makes it easier for anyone working in the codebase understand what this function really does.
+
+What I've shown you is just a drop from the whole ocean. There's an extended documentation which will make you a true guru of error handling. I want to conclude with the following quote from David Henry Thoreau: _I do not propose to write an ode to dejection, but to brag as lustily as chanticleer in the morning, standing on his roost, if only to wake my neighbors up_
